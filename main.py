@@ -186,7 +186,17 @@ if __name__ == "__main__":
                             file = open("tasks.txt","a")
                             file.write(f"{i}. {tasks[i]}\n")
                             file.close()
-                    elif "show my schedule" in query:
+
+                    elif "no" in query:
+                        i = 0
+                        no_tasks = int(input("Enter the no. of tasks :- "))
+                        for i in range(no_tasks):
+                            tasks.append(input("Enter the task :- "))
+                            file = open("tasks.txt","a")
+                            file.write(f"{i}. {tasks[i]}\n")
+                            file.close()
+                
+                elif "show my schedule" in query:
                             file = open("tasks.txt","r")
                             content = file.read()
                             file.close()
@@ -198,15 +208,7 @@ if __name__ == "__main__":
                                 message = content,
                                 timeout = 15
                                 )                          
-                    elif "no" in query:
-                        i = 0
-                        no_tasks = int(input("Enter the no. of tasks :- "))
-                        for i in range(no_tasks):
-                            tasks.append(input("Enter the task :- "))
-                            file = open("tasks.txt","a")
-                            file.write(f"{i}. {tasks[i]}\n")
-                            file.close()
-                
+                    
                 ################################################################################################
 
                 elif "open" in query:   #EASY METHOD
@@ -240,11 +242,11 @@ if __name__ == "__main__":
 
                 ################################################################################################
 
-                elif "translate" in query:
-                    from Translator import translategl
-                    query = query.replace("jarvis","")
-                    query = query.replace("translate","")
-                    translategl(query)
+                # elif "translate" in query:
+                #     from Translator import translategl
+                #     query = query.replace("jarvis","")
+                #     query = query.replace("translate","")
+                #     translategl(query)
 
                 ################################################################################################
 
@@ -356,43 +358,13 @@ if __name__ == "__main__":
 
                 ################################################################################################
                 
-                elif "focus mode" in query:
-                    a = int(input("Are you sure that you want to enter focus mode :- [1 for YES / 2 for NO "))
-                    if (a==1):
-                        speak("Entering the focus mode....")
-                        os.startfile("C:\\Users\\ADMIN\\Downloads\\My Projects\\GenAI Projects\\jarvis-openai\\FocusMode.py")
-                        exit()
-                                                  
-                    else:
-                        pass
-
-                ################################################################################################
-
-                elif "show my focus" in query:
-                    from FocusGraph import focus_graph
-                    focus_graph()
                 
+
                 ################################################################################################
-                elif "ipl score" in query:
-                    from plyer import notification  #pip install plyer
-                    import requests #pip install requests
-                    from bs4 import BeautifulSoup #pip install bs4
-                    url = "https://www.cricbuzz.com/"
-                    page = requests.get(url)
-                    soup = BeautifulSoup(page.text,"html.parser")
-                    team1 = soup.find_all(class_ = "cb-ovr-flo cb-hmscg-tm-nm")[0].get_text()
-                    team2 = soup.find_all(class_ = "cb-ovr-flo cb-hmscg-tm-nm")[1].get_text()
-                    team1_score = soup.find_all(class_ = "cb-ovr-flo")[8].get_text()
-                    team2_score = soup.find_all(class_ = "cb-ovr-flo")[10].get_text()
 
-                    a = print(f"{team1} : {team1_score}")
-                    b = print(f"{team2} : {team2_score}")
-
-                    notification.notify(
-                        title = "IPL SCORE :- ",
-                        message = f"{team1} : {team1_score}\n {team2} : {team2_score}",
-                        timeout = 15
-                    )
+              
+                ################################################################################################
+               
                 
                 ################################################################################################
 
